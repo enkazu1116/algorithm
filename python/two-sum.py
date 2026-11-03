@@ -6,13 +6,25 @@
 # Output: [0,1]
 def get_index_of_two_sum(nums: list[int], target: int) -> list[int]:
 
+    """
     # 二重ループで記載する
     for f in range(len(nums)):
         # ここの内部ループの処理がわからなかった
         for s in range(f + 1, len(nums)):
             if nums[f] + nums[s] == target:
                 return [f, s]
+    """
+    
+    # use hash table
+    seen: dict[int, int] = {}
 
+    for index, num in enumerate(nums):
+        complement: int = target - num
+
+        if complement in seen:
+            return [seen[complement], index]
+
+        seen[num] = index
     return []
 
 
